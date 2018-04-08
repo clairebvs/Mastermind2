@@ -15,11 +15,9 @@ class GameTest < Minitest::Test
     assert_equal 4, game.answer.length
   end
 
-  def test_correct_colors
-    game = Game.new
-    assert_equal "g" || "y" || "r" || "b", game.correct_color
 
-  end
+
+
 
 
 end

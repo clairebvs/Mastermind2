@@ -5,15 +5,13 @@ class Game
   def answer
     computer = Array.new (4)
     colors = ["g", "b", "y", "r"]
-    4.times.map do |color|
+    computer.map do |color|
       colors.sample
       # binding.pry
-    end
+    end.join
   end
 
-  def correct_color
 
-  end
 end
 
 

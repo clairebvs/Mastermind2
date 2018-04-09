@@ -8,7 +8,7 @@ class CheckGuessTest < Minitest::Test
   def test_incorrect_color
     game = Game.new("yyyy")
   # user_input = "rrgg"
-    assert_equal [0, 0], CheckGuess.compare(game.answer, "yybb")
+    assert_equal [0, 0], CheckGuess.compare(game.answer, "bbbb")
   end
 
 end

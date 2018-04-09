@@ -10,12 +10,12 @@ class Game
 
   def answer
     computer = Array.new (4)
-    computer.map do |color|
+    4.times.map do |color|
       colors.sample
-      # binding.pry
+      binding.pry
     end.join
   end
-
+ # missing 4.times do
 
 end
 

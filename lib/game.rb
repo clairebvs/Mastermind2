@@ -1,10 +1,15 @@
 class Game
 
-  attr_reader :answer
+  attr_reader :answer,
+              :colors
+
+
+  def initialize
+    @colors = ["g", "b", "y", "r"]
+  end
 
   def answer
     computer = Array.new (4)
-    colors = ["g", "b", "y", "r"]
     computer.map do |color|
       colors.sample
       # binding.pry

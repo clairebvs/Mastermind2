@@ -7,20 +7,18 @@ require 'pry'
 class CheckGuessTest < Minitest::Test
 
   def test_incorrect_color
-    skip
     sequence = "yyyy"
     guess = "bbbb"
     actual = CheckGuess.new(sequence, guess).check_position
-    expected = "You are wrong"
+    expected = "You are wrong."
     assert_equal expected, actual
   end
 
   def test_correct_color
-    skip
     sequence = "yyyy"
     guess = "yyyy"
     actual = CheckGuess.new(sequence, guess).check_position
-    expected = "You are correct"
+    expected = "You are correct."
     assert_equal expected, actual
   end
 

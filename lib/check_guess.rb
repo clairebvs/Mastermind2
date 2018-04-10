@@ -2,6 +2,7 @@ require './lib/rand_sequence'
 
 class CheckGuess
 
+
   def initialize(sequence, guess)
     @guess = guess
     @sequence = sequence
@@ -22,17 +23,15 @@ class CheckGuess
     matches = []
     matched_color = []
     seq_arr.each_with_index do |char, index|
-      matches << (seq_arr[index] == guess_arr[index])
-      if seq_arr[index] == guess_arr[index]
-        matched_color << char
-      end
+      matches << char if (seq_arr[index] == guess_arr[index])
+      matched_color << char if seq_arr[index] == guess_arr[index]
     end
-    number_matches = matches.count(true)
-    uniq_color = matched_color.uniq.count
-      if number_matches != 0
-        return message + " You have #{number_matches} correct position and #{uniq_color} correct color"
-      else
-        return message
-      end
+    number_matches = matches.length
+    uniq_color = matched_color.uniq.length
+    if number_matches != 0 || uniq_color != 0
+      p message + " You have #{number_matches} correct position and #{uniq_color} correct color"
+    else
+      p message
+    end
   end
 end

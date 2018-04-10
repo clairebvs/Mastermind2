@@ -1,23 +1,69 @@
+require './lib/check_guess'
+
 class Play
 
+  def initialize
+    @count = 0
+  end
+
   def welcome_message
-   "Welcome to MASTERMIND, Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+   "Welcome to MASTERMIND"
   end
 
   def get_input
-    user_input = ""
-    user_input = gets.chomp
+    # puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    user_input = " "
+    # user_input = gets.chomp
     until user_input == "q" || user_input == "quit"
-      # user_input = gets.chomp
+    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+      user_input = gets.chomp
       if user_input == "p" || user_input == "play"
         puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
-      else user_input == "i" || user_input == "quit"
+        guess_input
+      elsif user_input == "i" || user_input == "instruction"
         puts "Try to find a sequence of four elements made up of red, blue, yellow or green. One color can be use as many times as you want. After each attempt you will know how many correct colors you have and how many in the correct position. "
-        user_input = gets.chomp
+      else user_input == "q" || user_input == "quit"
+        puts "Why ?"
+        exit
       end
-      break
     end
   end
+
+  def guess_input
+    answer = RandomSequence.new.answer_sample
+    user_input = ""
+    loop do
+      puts "Make a guess"
+      user_input = gets.chomp.downcase
+      #   If it’s 'q' or 'quit' then exit the game !!
+      if  user_input == "q" || user_input == "quit"
+        break
+        #   If it’s 'c' or 'cheat' then print out the current secret code
+      elsif user_input == "cheat"
+        puts "You cheat #{answer}!!!!"
+        #   If it’s fewer than four letters, tell them it’s too short
+      elsif user_input.length < 4
+        puts "It is too short !!"
+        #   If it’s longer than four letters, tell them it’s too long
+      elsif user_input.length > 4
+        puts "It is too long"
+        #   If they guess the secret sequence, enter the end game flow below
+      elsif user_input == answer
+        # Sequence.new.random_sequence
+        puts "You win"
+        break
+      else
+        @count += 1
+        CheckGuess.new(answer, user_input).check_position
+        p "You have taken #{@count} guess(es)"
+      end
+    end
+    p welcome_message
+    get_input
+  end
+
+
+
 
 end
 

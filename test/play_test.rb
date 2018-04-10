@@ -18,6 +18,7 @@ class PlayTest < Minitest::Test
   end
 
   def test_it_gets_user_input
+    skip
     play = Play.new
     user_input = "i"
     actual = Play.new.get_input

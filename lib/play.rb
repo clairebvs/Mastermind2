@@ -53,8 +53,11 @@ class Play
       elsif user_input == answer
          end_time = Time.now
          timer = end_time - @start_timer
-        puts "Congratulations! You guessed the sequence #{answer} in #{@count} guesses over #{timer}
+        puts "Congratulations! You guessed the sequence #{answer} in #{@count} guesses over #{timer}.
         Do you want to (p)lay again or (q)uit?"
+        new_game
+        # have to add timer minutes or seconds in puts and might need to refactor methods ?
+
         break
       else
         @count += 1
@@ -66,9 +69,15 @@ class Play
     get_input
   end
 
-  # Congratulations! You guessed the sequence 'GRRB' in 8 guesses over 4 minutes,
-  # 22 seconds.
-  #
+  def new_game
+    user_input = ""
+    until user_input == "q" || user_input == "quit"
+    user_input = gets.chomp.downcase
+      if user_input == "p" || user_input == "play"
+        guess_input
+      end
+    end
+  end
   # Do you want to (p)lay again or (q)uit?
 
 

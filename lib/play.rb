@@ -1,9 +1,11 @@
 require './lib/check_guess'
+require 'pry'
 
 class Play
 
   def initialize
     @count = 0
+    @start_timer = Time.now
   end
 
   def welcome_message
@@ -13,7 +15,6 @@ class Play
   def get_input
     # puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
     user_input = " "
-    # user_input = gets.chomp
     until user_input == "q" || user_input == "quit"
     puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
       user_input = gets.chomp
@@ -31,6 +32,7 @@ class Play
 
   def guess_input
     answer = RandomSequence.new.answer_sample
+    @start_timer = Time.now
     user_input = ""
     loop do
       puts "Make a guess"
@@ -49,8 +51,10 @@ class Play
         puts "It is too long"
         #   If they guess the secret sequence, enter the end game flow below
       elsif user_input == answer
-        # Sequence.new.random_sequence
-        puts "You win"
+         end_time = Time.now
+         timer = end_time - @start_timer
+        puts "Congratulations! You guessed the sequence #{answer} in #{@count} guesses over #{timer}
+        Do you want to (p)lay again or (q)uit?"
         break
       else
         @count += 1
@@ -62,7 +66,10 @@ class Play
     get_input
   end
 
-
+  # Congratulations! You guessed the sequence 'GRRB' in 8 guesses over 4 minutes,
+  # 22 seconds.
+  #
+  # Do you want to (p)lay again or (q)uit?
 
 
 end

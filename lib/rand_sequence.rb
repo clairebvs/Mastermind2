@@ -1,6 +1,6 @@
 class RandomSequence
   attr_reader :answer,
-              :colors
+  :colors
 
   def initialize
     @colors = ["g", "b", "y", "r"]
